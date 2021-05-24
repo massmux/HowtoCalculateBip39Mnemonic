@@ -147,6 +147,8 @@ echo "ibase=2; obase=A; 00001101011" | bc
 (aspect)
 
 
-You can easily check against ian coleman tool that this is really correct
+## Verify the result against ian coleman tool
+
+[ian coleman bip39 tool](https://iancoleman.io/bip39/)
 
 ![iancoleman-bip39](https://i.ibb.co/QDsC3Cr/bip39-check.png)

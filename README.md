@@ -2,6 +2,8 @@
 
 The goal is to calculate BIP39 12 words mnemonic starting from an entropy. In this case let's suppose we already have a 128bit entropy that means 16 bytes, 32 hex chars. We just use terminal commands, nothing more. We can use the any offline computer for this calculation. 
 
+### 128 bits entropy
+
 Let's start with a 128bit entropy as follows:
 
 ```
@@ -14,6 +16,8 @@ Checking hexadecimal length
 echo -n 656d338db7c217ad57b2516cdddd6d06  |wc -c
 32
 ```
+
+### Calculating checksum
 
 Converting data to binary and calculate SHA256 HASH
 
@@ -28,12 +32,16 @@ Now let's take the first 4 bits (ie 1 hex char) of the resulting hash. This is t
 656d338db7c217ad57b2516cdddd6d06b
 ```
 
+### Get the binary
+
 Now let's change the whole hexadecimal to binary
 
 ```
 echo "ibase=16; obase=2; $(echo 656d338db7c217ad57b2516cdddd6d06b | tr '[:lower:]' '[:upper:]') " | bc |tr -d '\n'
 11001010110110100110011100011011011011111000010000101111010110101010\111101100100101000101101100110111011101110101101101000001101011
 ```
+
+### Divide in segments
 
 We must divide the binary output we got above, in 12 segments of 11 bits each. Each of them is a word. Infact we expect to reach 12 words to check against a special dictionary. So we do:
 
@@ -70,6 +78,8 @@ printf 011001010110110100110011100011011011011111000010000101111010110101010\111
 01011011010
 00001101011
 ```
+
+### Get the words sequence
 
 Now we got 12 perfect 11 bits segments. Each is a bip39 word. Now we have to convert each of them
 
@@ -148,6 +158,8 @@ echo "ibase=2; obase=A; 00001101011" | bc
 
 
 ## Verify the result against ian coleman tool
+
+ You can use the Ian Coleman tool (bip39) to verify all the calculations we did by hand right now. As you can see the whole mnemonic is matching on what is returned by the bip39 tool.
 
 [ian coleman bip39 tool](https://iancoleman.io/bip39/)
 

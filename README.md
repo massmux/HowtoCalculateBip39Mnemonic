@@ -87,4 +87,4 @@ and so on ....
 
 You can easily check against ian coleman tool that this is really correct
 
-[iancoleman-bip39](https://i.ibb.co/QDsC3Cr/bip39-check.png)
+![iancoleman-bip39](https://i.ibb.co/QDsC3Cr/bip39-check.png)
